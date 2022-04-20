@@ -13,16 +13,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        sendMassage()
+        sendMessage()
     }
 
-    private fun sendMassage() {
-        val editText:EditText = findViewById(R.id.textMessage)
-        val button:Button = findViewById(R.id.buttonSend)
+    private fun sendMessage() {
+        val editText: EditText = findViewById(R.id.textMessage)
+        val button: Button = findViewById(R.id.buttonSend)
         button.setOnClickListener {
             val message = editText.text.toString()
-            val broadcastMessage = Intent(KEY_INTENT_FILTER).apply {
-                putExtra(KEY_MESSAGE,message)
+            val broadcastMessage = Intent().apply {
+                putExtra(KEY_MESSAGE, message)
+                action = KEY_INTENT_FILTER
                 @SuppressLint("WrongConstant")
                 flags = FLAG_RECEIVER_INCLUDE_BACKGROUND
             }
